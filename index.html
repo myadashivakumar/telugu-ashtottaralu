@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>అష్టోత్తర శతనామావళి</title>
-<meta name="description" content="వివిధ దేవతల అష్టోత్తర శతనామావళి — తెలుగులో, ఆఫ్‌లైన్‌లో కూడా చదవగలిగేలా.">
-<meta name="theme-color" content="#221A12">
+<title>దేవుని స్తోత్రాలు</title>
+<meta name="description" content="వివిధ దేవతల అష్టోత్తరాలు, సహస్రనామాలు, మంగళ హారతులు — తెలుగులో, ఆఫ్‌లైన్‌లో కూడా చదవగలిగేలా.">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="అష్టోత్తరాలు">
+<meta name="apple-mobile-web-app-title" content="స్తోత్రాలు">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ramabhadra&family=Mallanna&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ramabhadra&family=Mallanna&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,19 +27,22 @@
   <section id="view-home" class="view view-home" aria-label="దేవతల జాబితా">
     <header class="home-header">
       <div class="home-header__flame" aria-hidden="true">
-        <svg viewBox="0 0 100 100"><use href="#icon-flame"></use></svg>
+        <svg viewBox="0 0 100 100"><use href="#icon-bell"></use></svg>
       </div>
-      <p class="home-eyebrow">❖ నిత్య పారాయణ ప్రతిక ❖</p>
-      <h1 class="home-title">అష్టోత్తర శతనామావళి</h1>
-      <p class="home-subtitle">108 Names &middot; Telugu &middot; ఆఫ్‌లైన్‌లో చదవండి</p>
-      <p class="home-dateline">సంపుటి ౧ &nbsp;·&nbsp; స్తోత్ర సంపుటి ప్రత్యేక సంచిక &nbsp;·&nbsp; సర్వహక్కులు భక్తులవి</p>
+      <p class="home-eyebrow">నిత్య పారాయణం</p>
+      <h1 class="home-title">దేవుని స్తోత్రాలు</h1>
+      <p class="home-subtitle">Ashtottaram &middot; Sahasranamam &middot; Harathi &middot; Telugu</p>
+      <div class="search-bar">
+        <svg class="search-bar__icon" viewBox="0 0 100 100" aria-hidden="true"><circle cx="42" cy="42" r="26" fill="none" stroke="currentColor" stroke-width="8"/><path d="M62 62 L86 86" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+        <input type="search" id="search-input" class="search-bar__input" placeholder="దేవుని పేరు వెతకండి…" aria-label="దేవుని పేరు వెతకండి">
+      </div>
     </header>
 
+    <p id="search-empty" class="search-empty" hidden>ఫలితాలు లేవు</p>
     <div id="shrine-grid" class="shrine-grid" role="list"></div>
 
     <footer class="home-footer">
       <p>ప్రతిరోజూ భక్తితో పఠించండి</p>
-      <p class="home-footer__credit">చిత్రాలు: రాజా రవివర్మ &amp; సమకాలీన కళాకారులు &middot; సార్వజనిక సంపద (Public Domain)</p>
     </footer>
   </section>
 
@@ -69,104 +72,104 @@
 <svg style="display:none">
   <defs>
     <symbol id="icon-flame" viewBox="0 0 100 100">
-      <path d="M50 12 C38 30 30 42 30 58 a20 20 0 0 0 40 0 c0 -16 -8 -28 -20 -46z" />
-      <path d="M50 42 C45 50 42 56 42 63 a8 8 0 0 0 16 0 c0 -7 -3 -13 -8 -21z" fill="#4A1420" opacity="0.35"/>
+      <path d="M50 12 C38 30 30 42 30 58 a20 20 0 0 0 40 0 c0 -16 -8 -28 -20 -46z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M50 42 C45 50 42 56 42 63 a8 8 0 0 0 16 0 c0 -7 -3 -13 -8 -21z" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
     <symbol id="icon-om" viewBox="0 0 100 100">
-      <circle cx="50" cy="20" r="6"/>
-      <path d="M50 32 v10" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
-      <path d="M22 78 C22 55 40 50 50 62 C58 72 46 82 36 76 C48 90 78 84 76 60 C74 44 56 40 46 50" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>
+      <circle cx="50" cy="20" r="5"/>
+      <path d="M50 32 v10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M22 78 C22 55 40 50 50 62 C58 72 46 82 36 76 C48 90 78 84 76 60 C74 44 56 40 46 50" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </symbol>
     <symbol id="icon-trishul" viewBox="0 0 100 100">
-      <path d="M50 90 V25" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M50 30 L30 12 M50 30 L50 8 M50 30 L70 12" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
-      <path d="M34 55 h32" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 90 V25" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M50 30 L30 12 M50 30 L50 8 M50 30 L70 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M34 55 h32" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/>
     </symbol>
     <symbol id="icon-shiva" viewBox="0 0 100 100">
-      <path d="M50 92 V32" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M50 36 L32 16 M50 36 L50 12 M50 36 L68 16" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M35 58 h30" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-      <path d="M70 10 C64 10 59.5 14.5 59.5 20 C59.5 25.5 64 30 70 30 C66.5 27.5 64.5 24 64.5 20 C64.5 16 66.5 12.5 70 10 Z"/>
+      <path d="M50 92 V32" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M50 36 L32 16 M50 36 L50 12 M50 36 L68 16" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M35 58 h30" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M70 10 C64 10 59.5 14.5 59.5 20 C59.5 25.5 64 30 70 30 C66.5 27.5 64.5 24 64.5 20 C64.5 16 66.5 12.5 70 10 Z" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
     <symbol id="icon-durga" viewBox="0 0 100 100">
-      <path d="M50 92 V40" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M50 44 L34 24 M50 44 L50 23 M50 44 L66 24" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-      <path d="M35 64 h30" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-      <path d="M50 5 C44 12 41 17 41 21 a9 9 0 0 0 18 0 c0 -4 -3 -9 -9 -16z"/>
+      <path d="M50 92 V40" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M50 44 L34 24 M50 44 L50 23 M50 44 L66 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M35 64 h30" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M50 5 C44 12 41 17 41 21 a9 9 0 0 0 18 0 c0 -4 -3 -9 -9 -16z" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
     <symbol id="icon-modak" viewBox="0 0 100 100">
-      <ellipse cx="50" cy="84" rx="24" ry="5" opacity="0.45"/>
-      <path d="M50 15 C34 15 24 34 25 50 C26 68 36 82 50 82 C64 82 74 68 75 50 C76 34 66 15 50 15 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
-      <path d="M37 23 C33 28 30 34 29 40 M50 16 C46 22 44 28 44 34 M63 23 C67 28 70 34 71 40" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="50" cy="84" rx="24" ry="5" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.6"/>
+      <path d="M50 15 C34 15 24 34 25 50 C26 68 36 82 50 82 C64 82 74 68 75 50 C76 34 66 15 50 15 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M37 23 C33 28 30 34 29 40 M50 16 C46 22 44 28 44 34 M63 23 C67 28 70 34 71 40" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
     </symbol>
     <symbol id="icon-lotus" viewBox="0 0 100 100">
-      <path d="M50 85 C30 85 18 68 18 52 C30 58 40 62 50 62 C60 62 70 58 82 52 C82 68 70 85 50 85 Z"/>
-      <path d="M50 62 C42 48 42 30 50 15 C58 30 58 48 50 62 Z" opacity="0.85"/>
-      <path d="M50 62 C36 55 26 42 24 28 C40 30 48 42 50 62 Z" opacity="0.7"/>
-      <path d="M50 62 C64 55 74 42 76 28 C60 30 52 42 50 62 Z" opacity="0.7"/>
+      <path d="M50 85 C30 85 18 68 18 52 C30 58 40 62 50 62 C60 62 70 58 82 52 C82 68 70 85 50 85 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M50 62 C42 48 42 30 50 15 C58 30 58 48 50 62 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M50 62 C36 55 26 42 24 28 C40 30 48 42 50 62 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M50 62 C64 55 74 42 76 28 C60 30 52 42 50 62 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
     </symbol>
     <symbol id="icon-conch" viewBox="0 0 100 100">
-      <path d="M35 20 C25 32 22 48 30 62 C36 73 48 82 62 80 C76 78 84 64 78 52 C74 44 64 42 58 48 C53 53 55 60 61 62" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="35" cy="20" r="5"/>
+      <path d="M35 20 C25 32 22 48 30 62 C36 73 48 82 62 80 C76 78 84 64 78 52 C74 44 64 42 58 48 C53 53 55 60 61 62" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="35" cy="20" r="4" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
     <symbol id="icon-veena" viewBox="0 0 100 100">
-      <ellipse cx="28" cy="70" rx="16" ry="12"/>
-      <path d="M40 64 L82 22" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <circle cx="82" cy="22" r="7"/>
-      <path d="M46 58 L74 30 M50 62 L78 34" stroke="currentColor" stroke-width="2.5" opacity="0.7"/>
+      <ellipse cx="28" cy="70" rx="16" ry="12" fill="none" stroke="currentColor" stroke-width="4"/>
+      <path d="M40 64 L82 22" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <circle cx="82" cy="22" r="6" fill="none" stroke="currentColor" stroke-width="3.5"/>
+      <path d="M46 58 L74 30 M50 62 L78 34" stroke="currentColor" stroke-width="2" opacity="0.7" fill="none"/>
     </symbol>
     <symbol id="icon-gada" viewBox="0 0 100 100">
-      <circle cx="50" cy="28" r="18"/>
-      <path d="M50 46 V88" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-      <path d="M38 88 h24" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="50" cy="28" r="17" fill="none" stroke="currentColor" stroke-width="4.5"/>
+      <path d="M50 46 V88" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M38 88 h24" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
     </symbol>
     <symbol id="icon-vel" viewBox="0 0 100 100">
-      <path d="M50 8 L61 30 L50 25 L39 30 Z"/>
-      <path d="M50 28 V90" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M36 60 h28" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 8 L61 30 L50 25 L39 30 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M50 28 V90" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M36 60 h28" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
     </symbol>
     <symbol id="icon-dhanush" viewBox="0 0 100 100">
-      <path d="M30 14 C56 29 56 71 30 86" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M30 14 L30 86" stroke="currentColor" stroke-width="2" stroke-dasharray="1 5" stroke-linecap="round"/>
-      <path d="M20 50 H78" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-      <path d="M78 50 L66 43 M78 50 L66 57" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M30 14 C56 29 56 71 30 86" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M30 14 L30 86" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1 5" stroke-linecap="round"/>
+      <path d="M20 50 H78" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M78 50 L66 43 M78 50 L66 57" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
     </symbol>
     <symbol id="icon-flute" viewBox="0 0 100 100">
-      <path d="M15 72 L85 28" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <path d="M15 72 L85 28" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
       <circle cx="32" cy="61.5" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/>
       <circle cx="44" cy="53.7" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/>
       <circle cx="56" cy="46" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/>
       <circle cx="68" cy="38.3" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/>
     </symbol>
     <symbol id="icon-bell" viewBox="0 0 100 100">
-      <path d="M50 14 a6 6 0 0 1 6 6 v3 c15 4 21 17 21 33 v6 h-54 v-6 c0-16 6-29 21-33 v-3 a6 6 0 0 1 6-6z"/>
-      <circle cx="50" cy="85" r="6"/>
+      <path d="M50 14 a6 6 0 0 1 6 6 v3 c15 4 21 17 21 33 v6 h-54 v-6 c0-16 6-29 21-33 v-3 a6 6 0 0 1 6-6z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="50" cy="85" r="5" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
     <symbol id="icon-claw" viewBox="0 0 100 100">
-      <path d="M28 18 C23 40 25 63 34 85" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M50 14 C48 39 48 65 50 90" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-      <path d="M72 18 C77 40 75 63 66 85" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      <path d="M28 18 C23 40 25 63 34 85" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M50 14 C48 39 48 65 50 90" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M72 18 C77 40 75 63 66 85" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
     </symbol>
     <symbol id="icon-kalasha" viewBox="0 0 100 100">
-      <circle cx="50" cy="20" r="7"/>
-      <path d="M30 30 C38 22 62 22 70 30" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-      <rect x="45" y="29" width="10" height="14"/>
-      <path d="M35 44 h30 C65 64 60 86 50 86 C40 86 35 64 35 44 Z"/>
+      <circle cx="50" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="3.5"/>
+      <path d="M30 30 C38 22 62 22 70 30" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <rect x="45" y="29" width="10" height="14" fill="none" stroke="currentColor" stroke-width="3.5"/>
+      <path d="M35 44 h30 C65 64 60 86 50 86 C40 86 35 64 35 44 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
     </symbol>
     <symbol id="icon-navagraha" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="11"/>
-      <circle cx="50" cy="14" r="5"/>
-      <circle cx="75" cy="25" r="5"/>
-      <circle cx="86" cy="50" r="5"/>
-      <circle cx="75" cy="75" r="5"/>
-      <circle cx="50" cy="86" r="5"/>
-      <circle cx="25" cy="75" r="5"/>
-      <circle cx="14" cy="50" r="5"/>
-      <circle cx="25" cy="25" r="5"/>
+      <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="3.5"/>
+      <circle cx="50" cy="14" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="75" cy="25" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="86" cy="50" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="75" cy="75" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="50" cy="86" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="25" cy="75" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="14" cy="50" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="25" cy="25" r="4.5" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
     <symbol id="icon-surya" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="18"/>
-      <path d="M50 10 V22 M50 78 V90 M10 50 H22 M78 50 H90 M22.6 22.6 L30.4 30.4 M69.6 69.6 L77.4 77.4 M77.4 22.6 L69.6 30.4 M22.6 77.4 L30.4 69.6" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 10 V22 M50 78 V90 M10 50 H22 M78 50 H90 M22.6 22.6 L30.4 30.4 M69.6 69.6 L77.4 77.4 M77.4 22.6 L69.6 30.4 M22.6 77.4 L30.4 69.6" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
     </symbol>
   </defs>
 </svg>

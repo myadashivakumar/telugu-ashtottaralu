@@ -25,11 +25,17 @@
     return '<svg viewBox="0 0 100 100"><use href="#icon-' + name + '"></use></svg>';
   }
 
-  function portraitHtml(d, size) {
-    if (d.image) {
-      return '<img src="' + d.image + '" alt="" loading="lazy" width="' + size + '" height="' + size + '">';
-    }
+  function portraitHtml(d) {
     return '<div class="portrait-fallback">' + symbolSvg(d.symbol) + '</div>';
+  }
+
+  // Landing cards show the deity portrait photo when we have one;
+  // the detail page always uses the minimal line-art icon.
+  function cardPortraitHtml(d) {
+    if (d.image) {
+      return '<img src="' + d.image + '" alt="" loading="lazy">';
+    }
+    return portraitHtml(d);
   }
 
   // The first tab (or the deity itself, if it has no tabs) is what a
@@ -57,8 +63,9 @@
       card.style.setProperty("--card-color", d.color);
       card.style.setProperty("--card-soft", d.colorSoft);
       card.setAttribute("aria-label", d.telugu);
+      card.dataset.search = (d.telugu + " " + d.english).toLowerCase();
       card.innerHTML =
-        '<div class="shrine-card__portrait">' + portraitHtml(d, 200) + '</div>' +
+        '<div class="shrine-card__portrait">' + cardPortraitHtml(d) + '</div>' +
         '<p class="shrine-card__telugu">' + d.telugu + '</p>' +
         '<p class="shrine-card__english">' + d.english + '</p>' +
         '<span class="shrine-card__count">' + countBadge(d) + '</span>';
@@ -66,6 +73,23 @@
       frag.appendChild(card);
     });
     grid.appendChild(frag);
+  }
+
+  function wireSearch() {
+    var input = document.getElementById("search-input");
+    var empty = document.getElementById("search-empty");
+    if (!input) return;
+    input.addEventListener("input", function () {
+      var q = input.value.trim().toLowerCase();
+      var cards = grid.querySelectorAll(".shrine-card");
+      var visibleCount = 0;
+      cards.forEach(function (card) {
+        var match = !q || card.dataset.search.indexOf(q) !== -1;
+        card.hidden = !match;
+        if (match) visibleCount++;
+      });
+      empty.hidden = visibleCount !== 0;
+    });
   }
 
   function renderNames(names) {
@@ -129,7 +153,7 @@
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", d.color);
 
-    detailSymbol.innerHTML = portraitHtml(d, 300);
+    detailSymbol.innerHTML = portraitHtml(d);
 
     if (d.tabs) {
       detailTabs.hidden = false;
@@ -166,7 +190,7 @@
     detailView.hidden = true;
     homeView.hidden = false;
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", "#221A12");
+    if (meta) meta.setAttribute("content", "#FFFFFF");
     window.scrollTo(0, 0);
     if (location.hash) history.pushState({}, "", location.pathname);
   }
@@ -182,6 +206,7 @@
   });
 
   renderGrid();
+  wireSearch();
 
   // Deep-link on load, e.g. index.html#ganesha
   var initialId = location.hash ? location.hash.slice(1) : null;
