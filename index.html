@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>నిత్య పారాయణం</title>
 <meta name="description" content="వివిధ దేవతల అష్టోత్తరాలు, సహస్రనామాలు, మంగళ హారతులు — తెలుగులో, ఆఫ్‌లైన్‌లో కూడా చదవగలిగేలా.">
-<meta name="theme-color" content="#221A12">
+<meta name="theme-color" content="#7C1D1D">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -15,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ramabhadra&family=Mallanna&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ramabhadra&family=Mallanna&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,46 +26,116 @@
   <!-- HOME: shrine grid -->
   <section id="view-home" class="view view-home" aria-label="దేవతల జాబితా">
     <header class="home-header">
+      <button id="btn-menu" class="icon-btn btn-menu" aria-label="మెనూ">☰</button>
       <div class="home-header__flame" aria-hidden="true">
         <svg viewBox="0 0 100 100"><use href="#icon-bell"></use></svg>
       </div>
       <h1 class="home-title">నిత్య పారాయణం</h1>
       <p class="home-subtitle">Ashtottaram &middot; Sahasranamam &middot; Harathi &middot; Telugu</p>
-      <div class="search-bar">
-        <svg class="search-bar__icon" viewBox="0 0 100 100" aria-hidden="true"><circle cx="42" cy="42" r="26" fill="none" stroke="currentColor" stroke-width="8"/><path d="M62 62 L86 86" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
-        <input type="search" id="search-input" class="search-bar__input" placeholder="దేవుని పేరు వెతకండి…" aria-label="దేవుని పేరు వెతకండి">
-      </div>
     </header>
+
+    <div class="hero-banner">
+      <div class="hero-banner__art" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><use href="#icon-flame"></use></svg>
+      </div>
+      <p class="hero-banner__message" id="hero-message">నిత్యం భక్తితో పారాయణం చేసిన వారికి శాంతి, సౌభాగ్యం లభిస్తాయి.</p>
+    </div>
 
     <div id="panchangam" class="panchangam" hidden></div>
 
+    <div class="search-bar">
+      <svg class="search-bar__icon" viewBox="0 0 100 100" aria-hidden="true"><circle cx="42" cy="42" r="26" fill="none" stroke="currentColor" stroke-width="8"/><path d="M62 62 L86 86" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+      <input type="search" id="search-input" class="search-bar__input" placeholder="దేవుని పేరు వెతకండి…" aria-label="దేవుని పేరు వెతకండి">
+    </div>
+
     <p id="search-empty" class="search-empty" hidden>ఫలితాలు లేవు</p>
     <div id="shrine-grid" class="shrine-grid" role="list"></div>
-
-    <footer class="home-footer">
-      <p>ప్రతిరోజూ భక్తితో పఠించండి</p>
-    </footer>
   </section>
 
-  <!-- DETAIL: 108-name scroll -->
-  <section id="view-detail" class="view view-detail" aria-label="నామావళి" hidden>
-    <header id="detail-header" class="detail-header">
-      <button id="btn-back" class="btn-back" aria-label="వెనుకకు">
+  <!-- DEITY DETAIL: vertical content-card list -->
+  <section id="view-deity" class="view view-deity" aria-label="దేవత వివరాలు" hidden>
+    <header class="deity-header">
+      <button id="btn-back-deity" class="icon-btn" aria-label="వెనుకకు">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 4L7 12l8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>జాబితా</span>
       </button>
-      <div class="detail-header__portrait" id="detail-symbol" aria-hidden="true"></div>
-      <h2 id="detail-title" class="detail-title"></h2>
-      <p id="detail-subtitle" class="detail-subtitle"></p>
-      <div class="detail-tabs" id="detail-tabs" hidden></div>
+    </header>
+    <div class="deity-hero">
+      <div class="deity-hero__portrait" id="deity-portrait" aria-hidden="true"></div>
+      <h2 class="deity-hero__name" id="deity-name"></h2>
+      <p class="deity-hero__subtitle" id="deity-subtitle"></p>
+    </div>
+    <h3 class="section-label">ప్రార్థనలు</h3>
+    <div class="content-card-list" id="content-card-list" role="list"></div>
+  </section>
+
+  <!-- READING SCREEN: a single tab's content -->
+  <section id="view-reading" class="view view-reading" aria-label="పఠనం" hidden>
+    <header class="reading-header">
+      <button id="btn-back-reading" class="icon-btn" aria-label="వెనుకకు">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 4L7 12l8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <h2 class="reading-header__title" id="reading-header-title"></h2>
+      <button class="icon-btn" aria-label="మరిన్ని" disabled style="opacity:.35;">⋮</button>
     </header>
 
-    <ol id="name-list" class="name-list"></ol>
+    <div class="reading-titleblock">
+      <h1 class="reading-titleblock__title" id="reading-title"></h1>
+      <p class="reading-titleblock__subtitle" id="reading-subtitle"></p>
+    </div>
 
-    <div class="detail-end" id="detail-end">
-      <p id="detail-end-text"></p>
+    <div id="reading-content" class="reading-content"></div>
+
+    <div class="reading-end" id="reading-end" hidden>
+      <p id="reading-end-text"></p>
+    </div>
+
+    <div class="reading-controls">
+      <button id="font-dec" class="font-btn" aria-label="చిన్న అక్షరం">A−</button>
+      <button id="btn-audio" class="audio-btn" aria-label="వినండి (త్వరలో)" aria-disabled="true">🔊</button>
+      <button id="font-inc" class="font-btn" aria-label="పెద్ద అక్షరం">A+</button>
     </div>
   </section>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="ప్రధాన నావిగేషన్">
+    <button class="bottom-nav__item is-active" id="nav-home" data-nav="home">
+      <span class="bottom-nav__item-icon" aria-hidden="true">🏠</span>
+      <span>హోమ్</span>
+    </button>
+    <button class="bottom-nav__item" id="nav-reading" data-nav="reading">
+      <span class="bottom-nav__item-icon" aria-hidden="true">📖</span>
+      <span>పఠనం</span>
+    </button>
+    <button class="bottom-nav__item" id="nav-panchangam" data-nav="panchangam">
+      <span class="bottom-nav__item-icon" aria-hidden="true">📅</span>
+      <span>పంచాంగం</span>
+    </button>
+    <button class="bottom-nav__item" id="nav-audio" data-nav="audio">
+      <span class="bottom-nav__item-icon" aria-hidden="true">🎵</span>
+      <span>ఆడియో</span>
+    </button>
+    <button class="bottom-nav__item" id="nav-more" data-nav="more">
+      <span class="bottom-nav__item-icon" aria-hidden="true">☰</span>
+      <span>ఇంకా</span>
+    </button>
+  </nav>
+
+  <!-- MORE MENU (bottom sheet, UI only) -->
+  <div class="more-menu" id="more-menu" hidden>
+    <div class="more-menu__backdrop" id="more-menu-backdrop"></div>
+    <div class="more-menu__sheet" role="dialog" aria-label="ఇంకా మెనూ">
+      <div class="more-menu__handle" aria-hidden="true"></div>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">♡</span> ఇష్టమైనవి</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">▣</span> చదివినవి</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">⇩</span> డౌన్‌లోడ్‌లు</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">▣</span> నోట్స్</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">⚙</span> సెట్టింగులు</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">🔊</span> ఆడియో భాష</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">A</span> ఫాంట్ పరిమాణం</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">◉</span> థీమ్</button>
+      <button class="more-menu__item"><span class="more-menu__item-icon" aria-hidden="true">ⓘ</span> అప్లికేషన్ గురించి</button>
+    </div>
+  </div>
 
 </div>
 
