@@ -117,7 +117,8 @@ const DEITIES = {
     ],
     "color": "#D9622B",
     "colorSoft": "#F3E0D2",
-    "symbol": "om",
+    "symbol": "modak",
+    "image": "images/deities/ganesha.jpg",
     "id": "ganesha"
   },
   "vishnu": {
@@ -237,6 +238,7 @@ const DEITIES = {
     "color": "#2E4E8C",
     "colorSoft": "#DCE3F1",
     "symbol": "conch",
+    "image": "images/deities/vishnu.jpg",
     "id": "vishnu"
   },
   "shiva": {
@@ -355,7 +357,8 @@ const DEITIES = {
     ],
     "color": "#5C6B7A",
     "colorSoft": "#E4E7EA",
-    "symbol": "trishul",
+    "symbol": "shiva",
+    "image": "images/deities/shiva.jpg",
     "id": "shiva"
   },
   "lakshmi": {
@@ -475,6 +478,7 @@ const DEITIES = {
     "color": "#B8215B",
     "colorSoft": "#F5DCE7",
     "symbol": "lotus",
+    "image": "images/deities/lakshmi.jpg",
     "id": "lakshmi"
   },
   "durga": {
@@ -593,7 +597,8 @@ const DEITIES = {
     ],
     "color": "#A11D2E",
     "colorSoft": "#F1D9DB",
-    "symbol": "trishul",
+    "symbol": "durga",
+    "image": "images/deities/durga.jpg",
     "id": "durga"
   },
   "saraswati": {
@@ -713,6 +718,7 @@ const DEITIES = {
     "color": "#2E7CB8",
     "colorSoft": "#DCEAF3",
     "symbol": "veena",
+    "image": "images/deities/saraswati.jpg",
     "id": "saraswati"
   },
   "hanuman": {
@@ -832,6 +838,7 @@ const DEITIES = {
     "color": "#E07A1F",
     "colorSoft": "#F7E4CE",
     "symbol": "gada",
+    "image": "images/deities/hanuman.jpg",
     "id": "hanuman"
   }
 };

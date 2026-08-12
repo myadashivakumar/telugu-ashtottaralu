@@ -35,7 +35,7 @@
       card.style.setProperty("--card-soft", d.colorSoft);
       card.setAttribute("aria-label", d.telugu + " అష్టోత్తర శతనామావళి");
       card.innerHTML =
-        '<div class="shrine-card__symbol">' + symbolSvg(d.symbol) + '</div>' +
+        '<div class="shrine-card__portrait"><img src="' + d.image + '" alt="" loading="lazy" width="200" height="200"></div>' +
         '<p class="shrine-card__telugu">' + d.telugu + '</p>' +
         '<p class="shrine-card__english">' + d.english + '</p>' +
         '<span class="shrine-card__count">108 నామాలు</span>';
@@ -54,7 +54,7 @@
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", d.color);
 
-    detailSymbol.innerHTML = symbolSvg(d.symbol);
+    detailSymbol.innerHTML = '<img src="' + d.image + '" alt="' + d.telugu + '" width="300" height="300">';
     detailTitle.textContent = d.telugu + " అష్టోత్తర శతనామావళి";
     detailSubtitle.textContent = d.english + " Ashtottara Shatanamavali \u00B7 108 Names";
     detailEndText.textContent = "\u0965 ఇతి " + d.telugu + " అష్టోత్తరశతనామావళిః సమాప్తా \u0965";
@@ -81,7 +81,7 @@
     detailView.hidden = true;
     homeView.hidden = false;
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", "#4A1420");
+    if (meta) meta.setAttribute("content", "#221A12");
     window.scrollTo(0, 0);
     if (location.hash) history.pushState({}, "", location.pathname);
   }

@@ -1,4 +1,4 @@
-const CACHE_NAME = "ashtottara-v1";
+const CACHE_NAME = "ashtottara-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,7 +8,14 @@ const APP_SHELL = [
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",
-  "./icon-180.png"
+  "./icon-180.png",
+  "./images/deities/ganesha.jpg",
+  "./images/deities/vishnu.jpg",
+  "./images/deities/shiva.jpg",
+  "./images/deities/lakshmi.jpg",
+  "./images/deities/durga.jpg",
+  "./images/deities/saraswati.jpg",
+  "./images/deities/hanuman.jpg"
 ];
 
 self.addEventListener("install", function (event) {
