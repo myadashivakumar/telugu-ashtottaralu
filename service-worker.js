@@ -1,10 +1,12 @@
-const CACHE_NAME = "ashtottara-vintage-v4";
+const CACHE_NAME = "ashtottara-vintage-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
   "./data.js",
+  "./suncalc.js",
+  "./panchangam.js",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",

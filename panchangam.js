@@ -1,0 +1,96 @@
+(function () {
+  "use strict";
+
+  if (typeof SunCalc === "undefined") return;
+
+  var DEFAULT_LAT = 17.3850; // Hyderabad — used when location isn't available
+  var DEFAULT_LON = 78.4867;
+
+  var TELUGU_WEEKDAY = ["ఆదివారం", "సోమవారం", "మంగళవారం", "బుధవారం", "గురువారం", "శుక్రవారం", "శనివారం"];
+  var TELUGU_MONTH = ["జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్", "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"];
+
+  // Day-of-week (Sun=0..Sat=6) -> which of the 8 daylight parts (1-8, counted
+  // from sunrise) is Rahukalam / Yamagandam / Gulika Kalam. Cross-checked
+  // against multiple panchangam references; this is the standard method.
+  var RAHU_PART = [8, 2, 7, 5, 6, 4, 3];
+  var YAMA_PART = [5, 4, 3, 2, 1, 7, 6];
+  var GULIKA_PART = [7, 6, 5, 4, 3, 2, 1];
+
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+
+  function formatTime(date) {
+    if (!date || isNaN(date.getTime())) return "—";
+    var h = date.getHours(), m = date.getMinutes();
+    var ampm = h >= 12 ? "PM" : "AM";
+    var h12 = h % 12;
+    if (h12 === 0) h12 = 12;
+    return h12 + ":" + pad2(m) + " " + ampm;
+  }
+
+  function daylightPart(sunrise, sunset, partIndex) {
+    var totalMs = sunset.getTime() - sunrise.getTime();
+    var partMs = totalMs / 8;
+    var start = new Date(sunrise.getTime() + (partIndex - 1) * partMs);
+    var end = new Date(sunrise.getTime() + partIndex * partMs);
+    return [start, end];
+  }
+
+  function render(lat, lon, note) {
+    var el = document.getElementById("panchangam");
+    if (!el) return;
+
+    var now = new Date();
+    var times = SunCalc.getTimes(now, lat, lon);
+    var dow = now.getDay();
+    var rahu = daylightPart(times.sunrise, times.sunset, RAHU_PART[dow]);
+    var yama = daylightPart(times.sunrise, times.sunset, YAMA_PART[dow]);
+    var gulika = daylightPart(times.sunrise, times.sunset, GULIKA_PART[dow]);
+    var dateStr = now.getDate() + " " + TELUGU_MONTH[now.getMonth()] + " " + now.getFullYear();
+
+    el.innerHTML =
+      '<div class="panchangam__head">' +
+        '<span class="panchangam__date">' + dateStr + '</span>' +
+        '<span class="panchangam__day">' + TELUGU_WEEKDAY[dow] + '</span>' +
+      '</div>' +
+      '<div class="panchangam__grid">' +
+        '<div class="panchangam__item"><span class="panchangam__label">సూర్యోదయం</span><span class="panchangam__value">' + formatTime(times.sunrise) + '</span></div>' +
+        '<div class="panchangam__item"><span class="panchangam__label">సూర్యాస్తమయం</span><span class="panchangam__value">' + formatTime(times.sunset) + '</span></div>' +
+        '<div class="panchangam__item"><span class="panchangam__label">రాహుకాలం</span><span class="panchangam__value">' + formatTime(rahu[0]) + ' – ' + formatTime(rahu[1]) + '</span></div>' +
+        '<div class="panchangam__item"><span class="panchangam__label">యమగండం</span><span class="panchangam__value">' + formatTime(yama[0]) + ' – ' + formatTime(yama[1]) + '</span></div>' +
+        '<div class="panchangam__item panchangam__item--wide"><span class="panchangam__label">గుళిక కాలం</span><span class="panchangam__value">' + formatTime(gulika[0]) + ' – ' + formatTime(gulika[1]) + '</span></div>' +
+      '</div>' +
+      (note ? '<p class="panchangam__note">' + note + '</p>' : '');
+    el.hidden = false;
+  }
+
+  function init() {
+    if (!navigator.geolocation) {
+      render(DEFAULT_LAT, DEFAULT_LON, "మీ బ్రౌజర్‌లో లొకేషన్ లేదు కాబట్టి హైదరాబాద్ కోసం చూపబడింది");
+      return;
+    }
+    var settled = false;
+    var fallbackTimer = setTimeout(function () {
+      if (settled) return;
+      settled = true;
+      render(DEFAULT_LAT, DEFAULT_LON, "హైదరాబాద్ కోసం చూపబడింది");
+    }, 4000);
+
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(fallbackTimer);
+        render(pos.coords.latitude, pos.coords.longitude, null);
+      },
+      function () {
+        if (settled) return;
+        settled = true;
+        clearTimeout(fallbackTimer);
+        render(DEFAULT_LAT, DEFAULT_LON, "లొకేషన్ అనుమతి లేదు కాబట్టి హైదరాబాద్ కోసం చూపబడింది");
+      },
+      { timeout: 4000, maximumAge: 600000 }
+    );
+  }
+
+  init();
+})();
