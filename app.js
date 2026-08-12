@@ -1,14 +1,6 @@
 (function () {
   "use strict";
 
-  var teluguDigits = ["౦", "౧", "౨", "౩", "౪", "౫", "౬", "౭", "౮", "౯"];
-
-  function toTeluguNumeral(n) {
-    return String(n).split("").map(function (d) {
-      return teluguDigits[Number(d)];
-    }).join("");
-  }
-
   var homeView = document.getElementById("view-home");
   var detailView = document.getElementById("view-detail");
   var grid = document.getElementById("shrine-grid");
@@ -26,30 +18,10 @@
   }
 
   function portraitHtml(d) {
-    return '<div class="portrait-fallback">' + symbolSvg(d.symbol) + '</div>';
-  }
-
-  // Landing cards show the deity portrait photo when we have one;
-  // the detail page always uses the minimal line-art icon.
-  function cardPortraitHtml(d) {
     if (d.image) {
       return '<img src="' + d.image + '" alt="" loading="lazy">';
     }
-    return portraitHtml(d);
-  }
-
-  // The first tab (or the deity itself, if it has no tabs) is what a
-  // grid card badge / aria-label should describe.
-  function primaryContent(d) {
-    return d.tabs ? d.tabs[0] : d;
-  }
-
-  function countBadge(d) {
-    var content = primaryContent(d);
-    if (content.type === "verses") {
-      return content.verses.length + " శ్లోకాలు";
-    }
-    return content.names.length + " నామాలు";
+    return '<div class="portrait-fallback">' + symbolSvg(d.symbol) + '</div>';
   }
 
   function renderGrid() {
@@ -65,10 +37,9 @@
       card.setAttribute("aria-label", d.telugu);
       card.dataset.search = (d.telugu + " " + d.english).toLowerCase();
       card.innerHTML =
-        '<div class="shrine-card__portrait">' + cardPortraitHtml(d) + '</div>' +
+        '<div class="shrine-card__portrait">' + portraitHtml(d) + '</div>' +
         '<p class="shrine-card__telugu">' + d.telugu + '</p>' +
-        '<p class="shrine-card__english">' + d.english + '</p>' +
-        '<span class="shrine-card__count">' + countBadge(d) + '</span>';
+        '<p class="shrine-card__english">' + d.english + '</p>';
       card.addEventListener("click", function () { openDeity(id); });
       frag.appendChild(card);
     });
@@ -99,7 +70,7 @@
     names.forEach(function (name, i) {
       var li = document.createElement("li");
       li.innerHTML =
-        '<span class="name-list__num">' + toTeluguNumeral(i + 1) + '</span>' +
+        '<span class="name-list__num">' + (i + 1) + '</span>' +
         '<span class="name-list__text">' + name + '</span>';
       frag.appendChild(li);
     });
@@ -168,7 +139,8 @@
           for (var j = 0; j < siblings.length; j++) siblings[j].classList.remove("is-active");
           btn.classList.add("is-active");
           renderActive(d, tab, tab.label);
-          nameList.scrollIntoView({ block: "start" });
+          detailView.scrollTop = 0;
+          window.scrollTo(0, 0);
         });
         detailTabs.appendChild(btn);
       });
@@ -190,7 +162,7 @@
     detailView.hidden = true;
     homeView.hidden = false;
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", "#FFFFFF");
+    if (meta) meta.setAttribute("content", "#221A12");
     window.scrollTo(0, 0);
     if (location.hash) history.pushState({}, "", location.pathname);
   }

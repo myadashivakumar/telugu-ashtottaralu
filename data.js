@@ -2078,6 +2078,7 @@ const DEITIES = {
     "color": "#1A4D3E",
     "colorSoft": "#D9E8E2",
     "symbol": "bell",
+    "image": "images/deities/ayyappa.jpg",
     "id": "ayyappa"
   },
   "narasimha": {
@@ -2407,6 +2408,7 @@ const DEITIES = {
     "color": "#C9932A",
     "colorSoft": "#F5E7C9",
     "symbol": "kalasha",
+    "image": "images/deities/satyanarayana.jpg",
     "id": "satyanarayana"
   },
   "navagraha": {
@@ -2499,6 +2501,7 @@ const DEITIES = {
     "color": "#5B3A8E",
     "colorSoft": "#E6DFF0",
     "symbol": "navagraha",
+    "image": "images/deities/navagraha.jpg",
     "id": "navagraha"
   },
   "adityahrudayam": {
@@ -2737,6 +2740,7 @@ const DEITIES = {
     "color": "#D96E1B",
     "colorSoft": "#FBE6D2",
     "symbol": "surya",
+    "image": "images/deities/adityahrudayam.jpg",
     "id": "adityahrudayam"
   }
 };

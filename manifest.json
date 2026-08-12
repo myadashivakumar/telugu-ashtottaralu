@@ -1,13 +1,13 @@
 {
-  "name": "దేవుని స్తోత్రాలు — God's Stotras",
-  "short_name": "స్తోత్రాలు",
+  "name": "నిత్య పారాయణం — Nitya Parayanam",
+  "short_name": "నిత్య పారాయణం",
   "description": "వివిధ దేవతల అష్టోత్తరాలు, సహస్రనామాలు, మంగళ హారతులు తెలుగులో — ఆఫ్‌లైన్‌లో కూడా చదవగలిగేలా.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
+  "background_color": "#EDE3C8",
+  "theme_color": "#221A12",
   "lang": "te",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },

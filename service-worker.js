@@ -1,4 +1,4 @@
-const CACHE_NAME = "ashtottara-light-v3";
+const CACHE_NAME = "ashtottara-vintage-v1";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -20,7 +20,11 @@ const APP_SHELL = [
   "./images/deities/saibaba.jpg",
   "./images/deities/rama.jpg",
   "./images/deities/krishna.jpg",
-  "./images/deities/narasimha.jpg"
+  "./images/deities/narasimha.jpg",
+  "./images/deities/ayyappa.jpg",
+  "./images/deities/satyanarayana.jpg",
+  "./images/deities/navagraha.jpg",
+  "./images/deities/adityahrudayam.jpg"
 ];
 
 self.addEventListener("install", function (event) {
