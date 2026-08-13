@@ -1,4 +1,4 @@
-const CACHE_NAME = "ashtottara-pwa-new-app-v2";
+const CACHE_NAME = "ashtottara-pwa-new-app-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,7 +8,9 @@ const APP_SHELL = [
   "./data/ganesha.js",
   "./data/vishnu.js",
   "./data/shiva.js",
+  "./data/kedareshwara-vratham.js",
   "./data/lakshmi.js",
+  "./data/varalakshmi-vratham.js",
   "./data/durga.js",
   "./data/saraswati.js",
   "./data/hanuman.js",
