@@ -245,12 +245,17 @@
     window.scrollTo(0, 0);
   }
 
+  // Uses replaceState (not openReading's pushState) so moving between items
+  // with the arrows doesn't grow the history stack — the back button/gesture
+  // always returns directly to the deity page in one step, no matter how
+  // many times the arrows were used.
   function goToAdjacentTab(delta) {
     if (!currentReadingId) return;
     var list = contentList(DEITIES[currentReadingId]);
     var newIndex = currentReadingTabIndex + delta;
     if (newIndex < 0 || newIndex >= list.length) return;
-    openReading(currentReadingId, newIndex);
+    showReading(currentReadingId, newIndex);
+    history.replaceState({ v: "reading", id: currentReadingId, tab: newIndex }, "", "#" + currentReadingId + "/" + newIndex);
   }
 
   // ---------------- HOME ----------------
