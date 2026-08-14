@@ -165,6 +165,5 @@ window.DEITY_DATA.narasimha = {
   "color": "#B33A1E",
   "colorSoft": "#F3DED4",
   "symbol": "claw",
-  "image": "images/deities/narasimha.jpg",
   "id": "narasimha"
 };

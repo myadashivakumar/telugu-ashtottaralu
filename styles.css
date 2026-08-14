@@ -309,13 +309,6 @@ button {
 }
 .shrine-card__portrait .portrait-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 .shrine-card__portrait svg { width: 56%; height: 56%; }
-.shrine-card__portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
 
 .shrine-card__telugu {
   font-family: var(--font-display);
@@ -394,14 +387,6 @@ button {
   border: 3px solid var(--surface);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--deity-color) 55%, var(--ink) 20%), var(--shadow-1);
 }
-.deity-hero__portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-
 .portrait-fallback {
   width: 100%;
   height: 100%;

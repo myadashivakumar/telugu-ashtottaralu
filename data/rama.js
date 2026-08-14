@@ -163,6 +163,5 @@ window.DEITY_DATA.rama = {
   "color": "#3B7A3B",
   "colorSoft": "#DDEBDD",
   "symbol": "dhanush",
-  "image": "images/deities/rama.jpg",
   "id": "rama"
 };

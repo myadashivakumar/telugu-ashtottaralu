@@ -248,6 +248,5 @@ window.DEITY_DATA.durga = {
   "color": "#A11D2E",
   "colorSoft": "#F1D9DB",
   "symbol": "durga",
-  "image": "images/deities/durga.jpg",
   "id": "durga"
 };

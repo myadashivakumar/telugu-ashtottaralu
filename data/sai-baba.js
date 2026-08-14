@@ -229,6 +229,5 @@ window.DEITY_DATA.saibaba = {
   "color": "#8B5A2B",
   "colorSoft": "#F0E2D2",
   "symbol": "flame",
-  "image": "images/deities/saibaba.jpg",
   "id": "saibaba"
 };

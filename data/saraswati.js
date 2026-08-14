@@ -151,6 +151,5 @@ window.DEITY_DATA.saraswati = {
   "color": "#2E7CB8",
   "colorSoft": "#DCEAF3",
   "symbol": "veena",
-  "image": "images/deities/saraswati.jpg",
   "id": "saraswati"
 };

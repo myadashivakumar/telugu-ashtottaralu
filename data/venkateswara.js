@@ -154,6 +154,5 @@ window.DEITY_DATA.venkateswara = {
   "color": "#3B4A9C",
   "colorSoft": "#DEE2F3",
   "symbol": "conch",
-  "image": "images/deities/venkateswara.jpg",
   "id": "venkateswara"
 };

@@ -89,6 +89,5 @@ window.DEITY_DATA.navagraha = {
   "color": "#5B3A8E",
   "colorSoft": "#E6DFF0",
   "symbol": "navagraha",
-  "image": "images/deities/navagraha.jpg",
   "id": "navagraha"
 };

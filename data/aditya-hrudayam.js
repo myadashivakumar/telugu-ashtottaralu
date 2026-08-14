@@ -235,6 +235,5 @@ window.DEITY_DATA.adityahrudayam = {
   "color": "#D96E1B",
   "colorSoft": "#FBE6D2",
   "symbol": "surya",
-  "image": "images/deities/adityahrudayam.jpg",
   "id": "adityahrudayam"
 };

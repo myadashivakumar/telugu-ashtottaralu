@@ -158,6 +158,5 @@ window.DEITY_DATA.krishna = {
   "color": "#33418F",
   "colorSoft": "#DEE3F5",
   "symbol": "flute",
-  "image": "images/deities/krishna.jpg",
   "id": "krishna"
 };

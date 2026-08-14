@@ -1,4 +1,4 @@
-const CACHE_NAME = "ashtottara-pwa-new-app-v8";
+const CACHE_NAME = "ashtottara-pwa-new-app-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -29,26 +29,7 @@ const APP_SHELL = [
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",
-  "./icon-180.png",
-  "./images/deities/ganesha.jpg",
-  "./images/deities/vishnu.jpg",
-  "./images/deities/venkateswara.jpg",
-  "./images/deities/shiva.jpg",
-  "./images/deities/kedareshwara.jpg",
-  "./images/deities/lakshmi.jpg",
-  "./images/deities/varalakshmi.jpg",
-  "./images/deities/durga.jpg",
-  "./images/deities/saraswati.jpg",
-  "./images/deities/hanuman.jpg",
-  "./images/deities/subrahmanya.jpg",
-  "./images/deities/saibaba.jpg",
-  "./images/deities/rama.jpg",
-  "./images/deities/krishna.jpg",
-  "./images/deities/narasimha.jpg",
-  "./images/deities/ayyappa.jpg",
-  "./images/deities/satyanarayana.jpg",
-  "./images/deities/navagraha.jpg",
-  "./images/deities/adityahrudayam.jpg"
+  "./icon-180.png"
 ];
 
 self.addEventListener("install", function (event) {

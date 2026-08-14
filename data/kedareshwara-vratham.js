@@ -42,6 +42,5 @@ window.DEITY_DATA.kedareshwara = {
   "color": "#5C6B7A",
   "colorSoft": "#E4E7EA",
   "symbol": "trishul",
-  "image": "images/deities/kedareshwara.jpg",
   "id": "kedareshwara"
 };

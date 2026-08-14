@@ -159,6 +159,5 @@ window.DEITY_DATA.subrahmanya = {
   "color": "#2E7D5B",
   "colorSoft": "#DCEEE4",
   "symbol": "vel",
-  "image": "images/deities/subrahmanya.jpg",
   "id": "subrahmanya"
 };

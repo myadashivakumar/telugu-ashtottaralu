@@ -37,19 +37,29 @@ without internet.
 - `index.html` / `styles.css` / `app.js` — app shell, bottom navigation, more menu, share, and the reading screen (with A-/A+ font size controls, persisted)
 - `panchangam.js` — Panchangam widget logic (uses vendored `suncalc.js`)
 - `data.js` — aggregator; lists deity order and points `DEITIES` at `window.DEITY_DATA`
-- `data/<id>.js` — one file per deity, each populating `window.DEITY_DATA.<id>` with its Telugu/English names, tabs (names / verses / text), theme color, and portrait image path
+- `data/<id>.js` — one file per deity, each populating `window.DEITY_DATA.<id>` with its Telugu/English names, tabs (names / verses / text), theme color, and symbol name
 - `manifest.json` — makes it installable
 - `service-worker.js` — caches the app shell for offline use (bump `CACHE_NAME` whenever a cached file's contents change)
-- `images/deities/*.jpg` — portrait images for each deity
 - `icon-*.png` — app icons
+
+Every deity is represented by an original line-art SVG "symbol" badge (defined
+inline in `index.html`'s icon sprite, e.g. `icon-lotus`, `icon-conch`,
+`icon-trishul`) rendered in the deity's own theme color — not a photo or
+reproduction of existing artwork, so there's no image-licensing question to
+track. Current symbols: flame, om, trishul, shiva, durga, modak, lotus,
+conch, veena, gada, vel, dhanush, flute, bell, claw, kalasha, navagraha, surya.
 
 ## Adding more deities later
 Create `data/<id>.js` following the pattern of an existing file — it should do:
 ```js
 window.DEITY_DATA = window.DEITY_DATA || {};
-window.DEITY_DATA.<id> = { "telugu": "...", "english": "...", "tabs": [...], "color": "...", "colorSoft": "...", "symbol": "om|trishul|lotus|conch|veena|gada", "image": "images/deities/<id>.jpg", "id": "<id>" };
+window.DEITY_DATA.<id> = { "telugu": "...", "english": "...", "tabs": [...], "color": "...", "colorSoft": "...", "symbol": "<icon name>", "id": "<id>" };
 ```
+If none of the existing symbols fit, add a new `<symbol id="icon-...">` to the
+SVG sprite at the bottom of `index.html` (keep it simple original line art,
+not a reproduction of an existing image/artwork).
+
 Then:
 1. Add `<id>` to `DEITY_ORDER` in `data.js`.
 2. Add a `<script src="data/<id>.js"></script>` tag in `index.html`.
-3. Add `./data/<id>.js` and `./images/deities/<id>.jpg` to `APP_SHELL` in `service-worker.js`, and bump `CACHE_NAME`.
+3. Add `./data/<id>.js` to `APP_SHELL` in `service-worker.js`, and bump `CACHE_NAME`.

@@ -371,6 +371,5 @@ window.DEITY_DATA.ganesha = {
   "color": "#D9622B",
   "colorSoft": "#F3E0D2",
   "symbol": "modak",
-  "image": "images/deities/ganesha.jpg",
   "id": "ganesha"
 };

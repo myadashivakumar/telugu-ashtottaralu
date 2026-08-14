@@ -42,9 +42,6 @@
   }
 
   function portraitHtml(d) {
-    if (d.image) {
-      return '<img src="' + d.image + '" alt="" loading="lazy">';
-    }
     return '<div class="portrait-fallback">' + symbolSvg(d.symbol) + '</div>';
   }
 

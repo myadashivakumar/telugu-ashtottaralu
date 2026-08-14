@@ -435,6 +435,5 @@ window.DEITY_DATA.hanuman = {
   "color": "#E07A1F",
   "colorSoft": "#F7E4CE",
   "symbol": "gada",
-  "image": "images/deities/hanuman.jpg",
   "id": "hanuman"
 };

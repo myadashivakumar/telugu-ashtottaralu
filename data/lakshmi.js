@@ -161,6 +161,5 @@ window.DEITY_DATA.lakshmi = {
   "color": "#B8215B",
   "colorSoft": "#F5DCE7",
   "symbol": "lotus",
-  "image": "images/deities/lakshmi.jpg",
   "id": "lakshmi"
 };

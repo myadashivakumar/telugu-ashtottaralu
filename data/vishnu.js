@@ -166,6 +166,5 @@ window.DEITY_DATA.vishnu = {
   "color": "#2E4E8C",
   "colorSoft": "#DCE3F1",
   "symbol": "conch",
-  "image": "images/deities/vishnu.jpg",
   "id": "vishnu"
 };

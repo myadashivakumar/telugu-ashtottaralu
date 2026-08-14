@@ -165,6 +165,5 @@ window.DEITY_DATA.ayyappa = {
   "color": "#1A4D3E",
   "colorSoft": "#D9E8E2",
   "symbol": "bell",
-  "image": "images/deities/ayyappa.jpg",
   "id": "ayyappa"
 };

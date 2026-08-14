@@ -163,6 +163,5 @@ window.DEITY_DATA.shiva = {
   "color": "#5C6B7A",
   "colorSoft": "#E4E7EA",
   "symbol": "shiva",
-  "image": "images/deities/shiva.jpg",
   "id": "shiva"
 };

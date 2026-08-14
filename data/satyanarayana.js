@@ -557,6 +557,5 @@ window.DEITY_DATA.satyanarayana = {
   "color": "#C9932A",
   "colorSoft": "#F5E7C9",
   "symbol": "kalasha",
-  "image": "images/deities/satyanarayana.jpg",
   "id": "satyanarayana"
 };
