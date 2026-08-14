@@ -1,25 +1,30 @@
-# అష్టోత్తర శతనామావళి — Telugu Ashtottara PWA
+# నిత్య పారాయణం — Telugu Ashtottaram PWA
 
-A installable, offline-capable app with the 108-name (అష్టోత్తర శతనామావళి) prayer
-for seven deities: గణేశ, విష్ణు, శివ, మహాలక్ష్మి, దుర్గ, సరస్వతి, హనుమాన్.
+An installable, offline-capable app for daily Telugu devotional reading —
+Ashtottaram (108 names), Sahasranamam, Mangala Harathi, and Vratha Katha for
+19 deities: గణేశ, విష్ణు, వేంకటేశ్వర స్వామి, శివ, కేదారేశ్వర వ్రతం, మహాలక్ష్మి,
+వరలక్ష్మి వ్రతం, దుర్గ, సరస్వతి, హనుమాన్, సుబ్రహ్మణ్య, సాయిబాబా, శ్రీరామ, శ్రీకృష్ణ,
+అయ్యప్ప, లక్ష్మీ నరసింహ, సత్యనారాయణ, నవగ్రహ స్తోత్రం, ఆదిత్య హృదయం.
+
+The landing page also shows a daily Panchangam widget (sunrise/sunset,
+Rahukalam, live clock) computed locally from the device's location, with a
+Hyderabad fallback.
 
 ## Run it locally (to preview)
 You can't just double-click `index.html` and get full install/offline behavior —
 browsers block service workers on the `file://` protocol. Serve it over local HTTP:
 
 ```bash
-cd telugu-ashtottara-pwa
+cd telugu-ashtottaralu
 python3 -m http.server 8000
 # open http://localhost:8000 in your phone/desktop browser (same Wi-Fi, use your computer's IP for phone)
 ```
 
 ## Put it on the real internet (needed for "Add to Home Screen")
 PWAs need to be served over **HTTPS** for install-to-homescreen and offline
-caching to work on a phone. Easiest free options — just upload this folder:
-
-- **GitHub Pages**: create a repo, push these files, enable Pages in repo settings.
-- **Netlify / Vercel**: drag-and-drop this folder into their web dashboard (free tier).
-- **Firebase Hosting**: `firebase init hosting` then `firebase deploy`.
+caching to work on a phone. This repo is set up for GitHub Pages — see
+[DEPLOY_GITHUB_PAGES.md](DEPLOY_GITHUB_PAGES.md). Netlify, Vercel, or Firebase
+Hosting work too (drag-and-drop or CLI deploy).
 
 Once it's live at an HTTPS URL, open it on your phone and:
 - **Android/Chrome**: tap the menu → "Add to Home screen" / "Install app".
@@ -29,16 +34,22 @@ After the first visit, the service worker caches everything, so it keeps working
 without internet.
 
 ## What's inside
-- `index.html` / `styles.css` / `app.js` — the app shell and UI
-- `data.js` — all 7 deities' 108 names in Telugu (sourced and cross-checked
-  against Vaidika Vignanam's Telugu ashtottara texts)
+- `index.html` / `styles.css` / `app.js` — app shell, bottom navigation, more menu, share, and the reading screen (with A-/A+ font size controls, persisted)
+- `panchangam.js` — Panchangam widget logic (uses vendored `suncalc.js`)
+- `data.js` — aggregator; lists deity order and points `DEITIES` at `window.DEITY_DATA`
+- `data/<id>.js` — one file per deity, each populating `window.DEITY_DATA.<id>` with its Telugu/English names, tabs (names / verses / text), theme color, and portrait image path
 - `manifest.json` — makes it installable
-- `service-worker.js` — caches the app for offline use
-- `icon-*.png` — app icons (a simple diya/lamp motif)
+- `service-worker.js` — caches the app shell for offline use (bump `CACHE_NAME` whenever a cached file's contents change)
+- `images/deities/*.jpg` — portrait images for each deity
+- `icon-*.png` — app icons
 
 ## Adding more deities later
-Open `data.js` — each deity is an object with `telugu`, `english`, `color`,
-`colorSoft`, `symbol` (one of: om, trishul, lotus, conch, veena, gada), and a
-`names` array of exactly 108 strings. Add a new entry and its id to
-`DEITY_ORDER`, then add its filename to `service-worker.js`'s cache list if
-you add new assets.
+Create `data/<id>.js` following the pattern of an existing file — it should do:
+```js
+window.DEITY_DATA = window.DEITY_DATA || {};
+window.DEITY_DATA.<id> = { "telugu": "...", "english": "...", "tabs": [...], "color": "...", "colorSoft": "...", "symbol": "om|trishul|lotus|conch|veena|gada", "image": "images/deities/<id>.jpg", "id": "<id>" };
+```
+Then:
+1. Add `<id>` to `DEITY_ORDER` in `data.js`.
+2. Add a `<script src="data/<id>.js"></script>` tag in `index.html`.
+3. Add `./data/<id>.js` and `./images/deities/<id>.jpg` to `APP_SHELL` in `service-worker.js`, and bump `CACHE_NAME`.
