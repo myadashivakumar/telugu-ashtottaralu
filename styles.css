@@ -202,8 +202,6 @@ button {
   border-bottom: 1px solid var(--line-soft);
 }
 
-.panchangam__item--wide { grid-column: 1 / -1; }
-
 .panchangam__label {
   color: var(--ink-soft);
 }

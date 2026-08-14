@@ -10,21 +10,19 @@
   var TELUGU_MONTH = ["జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్", "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"];
 
   // Day-of-week (Sun=0..Sat=6) -> which of the 8 daylight parts (1-8, counted
-  // from sunrise) is Rahukalam / Yamagandam / Gulika Kalam. Cross-checked
-  // against multiple panchangam references; this is the standard method.
+  // from sunrise) is Rahukalam. Cross-checked against multiple panchangam
+  // references; this is the standard method.
   var RAHU_PART = [8, 2, 7, 5, 6, 4, 3];
-  var YAMA_PART = [5, 4, 3, 2, 1, 7, 6];
-  var GULIKA_PART = [7, 6, 5, 4, 3, 2, 1];
 
   function pad2(n) { return n < 10 ? "0" + n : "" + n; }
 
-  function formatTime(date) {
+  function formatTime(date, withSeconds) {
     if (!date || isNaN(date.getTime())) return "—";
-    var h = date.getHours(), m = date.getMinutes();
+    var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
     var ampm = h >= 12 ? "PM" : "AM";
     var h12 = h % 12;
     if (h12 === 0) h12 = 12;
-    return h12 + ":" + pad2(m) + " " + ampm;
+    return h12 + ":" + pad2(m) + (withSeconds ? ":" + pad2(s) : "") + " " + ampm;
   }
 
   function daylightPart(sunrise, sunset, partIndex) {
@@ -35,6 +33,14 @@
     return [start, end];
   }
 
+  var clockTimer = null;
+
+  function tickClock() {
+    var el = document.getElementById("panchangam-clock");
+    if (!el) { clearInterval(clockTimer); clockTimer = null; return; }
+    el.textContent = formatTime(new Date(), true);
+  }
+
   function render(lat, lon, note) {
     var el = document.getElementById("panchangam");
     if (!el) return;
@@ -43,8 +49,6 @@
     var times = SunCalc.getTimes(now, lat, lon);
     var dow = now.getDay();
     var rahu = daylightPart(times.sunrise, times.sunset, RAHU_PART[dow]);
-    var yama = daylightPart(times.sunrise, times.sunset, YAMA_PART[dow]);
-    var gulika = daylightPart(times.sunrise, times.sunset, GULIKA_PART[dow]);
     var dateStr = now.getDate() + " " + TELUGU_MONTH[now.getMonth()] + " " + now.getFullYear();
 
     el.innerHTML =
@@ -53,14 +57,16 @@
         '<span class="panchangam__day">' + TELUGU_WEEKDAY[dow] + '</span>' +
       '</div>' +
       '<div class="panchangam__grid">' +
+        '<div class="panchangam__item"><span class="panchangam__label">ప్రస్తుత సమయం</span><span class="panchangam__value" id="panchangam-clock">' + formatTime(now, true) + '</span></div>' +
         '<div class="panchangam__item"><span class="panchangam__label">సూర్యోదయం</span><span class="panchangam__value">' + formatTime(times.sunrise) + '</span></div>' +
         '<div class="panchangam__item"><span class="panchangam__label">సూర్యాస్తమయం</span><span class="panchangam__value">' + formatTime(times.sunset) + '</span></div>' +
         '<div class="panchangam__item"><span class="panchangam__label">రాహుకాలం</span><span class="panchangam__value">' + formatTime(rahu[0]) + ' – ' + formatTime(rahu[1]) + '</span></div>' +
-        '<div class="panchangam__item"><span class="panchangam__label">యమగండం</span><span class="panchangam__value">' + formatTime(yama[0]) + ' – ' + formatTime(yama[1]) + '</span></div>' +
-        '<div class="panchangam__item panchangam__item--wide"><span class="panchangam__label">గుళిక కాలం</span><span class="panchangam__value">' + formatTime(gulika[0]) + ' – ' + formatTime(gulika[1]) + '</span></div>' +
       '</div>' +
       (note ? '<p class="panchangam__note">' + note + '</p>' : '');
     el.hidden = false;
+
+    if (clockTimer) clearInterval(clockTimer);
+    clockTimer = setInterval(tickClock, 1000);
   }
 
   function init() {
