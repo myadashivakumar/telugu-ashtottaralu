@@ -97,6 +97,18 @@ button {
   top: max(10px, env(safe-area-inset-top));
 }
 
+.header-clock {
+  display: inline-flex;
+  color: var(--ink-soft);
+  line-height: 0;
+}
+
+.header-clock--home {
+  position: absolute;
+  left: 12px;
+  top: max(12px, env(safe-area-inset-top) + 2px);
+}
+
 .home-header__flame {
   width: 26px;
   height: 26px;
@@ -201,6 +213,7 @@ button {
   padding: 5px 0;
   border-bottom: 1px solid var(--line-soft);
 }
+.panchangam__item--wide { grid-column: 1 / -1; }
 
 .panchangam__label {
   color: var(--ink-soft);
@@ -368,6 +381,9 @@ button {
   align-items: center;
   padding: max(8px, env(safe-area-inset-top)) 8px 6px;
   background: var(--bg);
+}
+.deity-header .header-clock {
+  margin-left: auto;
 }
 
 .deity-hero {

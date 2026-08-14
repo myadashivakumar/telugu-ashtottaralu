@@ -16,13 +16,13 @@
 
   function pad2(n) { return n < 10 ? "0" + n : "" + n; }
 
-  function formatTime(date, withSeconds) {
+  function formatTime(date) {
     if (!date || isNaN(date.getTime())) return "—";
-    var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
+    var h = date.getHours(), m = date.getMinutes();
     var ampm = h >= 12 ? "PM" : "AM";
     var h12 = h % 12;
     if (h12 === 0) h12 = 12;
-    return h12 + ":" + pad2(m) + (withSeconds ? ":" + pad2(s) : "") + " " + ampm;
+    return h12 + ":" + pad2(m) + " " + ampm;
   }
 
   function daylightPart(sunrise, sunset, partIndex) {
@@ -31,14 +31,6 @@
     var start = new Date(sunrise.getTime() + (partIndex - 1) * partMs);
     var end = new Date(sunrise.getTime() + partIndex * partMs);
     return [start, end];
-  }
-
-  var clockTimer = null;
-
-  function tickClock() {
-    var el = document.getElementById("panchangam-clock");
-    if (!el) { clearInterval(clockTimer); clockTimer = null; return; }
-    el.textContent = formatTime(new Date(), true);
   }
 
   function render(lat, lon, note) {
@@ -57,16 +49,12 @@
         '<span class="panchangam__day">' + TELUGU_WEEKDAY[dow] + '</span>' +
       '</div>' +
       '<div class="panchangam__grid">' +
-        '<div class="panchangam__item"><span class="panchangam__label">ప్రస్తుత సమయం</span><span class="panchangam__value" id="panchangam-clock">' + formatTime(now, true) + '</span></div>' +
         '<div class="panchangam__item"><span class="panchangam__label">సూర్యోదయం</span><span class="panchangam__value">' + formatTime(times.sunrise) + '</span></div>' +
         '<div class="panchangam__item"><span class="panchangam__label">సూర్యాస్తమయం</span><span class="panchangam__value">' + formatTime(times.sunset) + '</span></div>' +
-        '<div class="panchangam__item"><span class="panchangam__label">రాహుకాలం</span><span class="panchangam__value">' + formatTime(rahu[0]) + ' – ' + formatTime(rahu[1]) + '</span></div>' +
+        '<div class="panchangam__item panchangam__item--wide"><span class="panchangam__label">రాహుకాలం</span><span class="panchangam__value">' + formatTime(rahu[0]) + ' – ' + formatTime(rahu[1]) + '</span></div>' +
       '</div>' +
       (note ? '<p class="panchangam__note">' + note + '</p>' : '');
     el.hidden = false;
-
-    if (clockTimer) clearInterval(clockTimer);
-    clockTimer = setInterval(tickClock, 1000);
   }
 
   function init() {

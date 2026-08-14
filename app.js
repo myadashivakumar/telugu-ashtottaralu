@@ -360,6 +360,37 @@
 
   setFontScale(getFontScale());
 
+  // ---------------- round header clock (shown on every screen) ----------------
+
+  var CLOCK_FACE_SVG =
+    '<svg viewBox="0 0 36 36" width="26" height="26" aria-hidden="true">' +
+      '<circle cx="18" cy="18" r="16" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>' +
+      '<line x1="18" y1="4" x2="18" y2="7" stroke="currentColor" stroke-width="1.2"/>' +
+      '<line x1="18" y1="32" x2="18" y2="29" stroke="currentColor" stroke-width="1.2"/>' +
+      '<line x1="4" y1="18" x2="7" y2="18" stroke="currentColor" stroke-width="1.2"/>' +
+      '<line x1="32" y1="18" x2="29" y2="18" stroke="currentColor" stroke-width="1.2"/>' +
+      '<line class="clock-hand clock-hand--hour" x1="18" y1="18" x2="18" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+      '<line class="clock-hand clock-hand--minute" x1="18" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<line class="clock-hand clock-hand--second" x1="18" y1="18" x2="18" y2="5" stroke="var(--maroon)" stroke-width="1" stroke-linecap="round"/>' +
+      '<circle cx="18" cy="18" r="1.6" fill="var(--maroon)"/>' +
+    '</svg>';
+
+  document.querySelectorAll(".header-clock").forEach(function (el) { el.innerHTML = CLOCK_FACE_SVG; });
+
+  function tickHeaderClock() {
+    var now = new Date();
+    var h = now.getHours() % 12, m = now.getMinutes(), s = now.getSeconds();
+    var hourDeg = (h + m / 60) * 30;
+    var minDeg = (m + s / 60) * 6;
+    var secDeg = s * 6;
+    document.querySelectorAll(".clock-hand--hour").forEach(function (el) { el.setAttribute("transform", "rotate(" + hourDeg + " 18 18)"); });
+    document.querySelectorAll(".clock-hand--minute").forEach(function (el) { el.setAttribute("transform", "rotate(" + minDeg + " 18 18)"); });
+    document.querySelectorAll(".clock-hand--second").forEach(function (el) { el.setAttribute("transform", "rotate(" + secDeg + " 18 18)"); });
+  }
+
+  tickHeaderClock();
+  setInterval(tickHeaderClock, 1000);
+
   // ---------------- boot ----------------
 
   renderGrid();
