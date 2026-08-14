@@ -31,8 +31,8 @@
   var moreMenuBackdrop = document.getElementById("more-menu-backdrop");
   var btnMenu = document.getElementById("btn-menu");
 
-  var fontDecBtn = document.getElementById("font-dec");
-  var fontIncBtn = document.getElementById("font-inc");
+  var prevTabBtn = document.getElementById("prev-tab");
+  var nextTabBtn = document.getElementById("next-tab");
 
   var DEFAULT_THEME_COLOR = "#7C1D1D";
   var DEFAULT_DEITY_SOFT = "#F4E1E1";
@@ -215,11 +215,18 @@
     }
   }
 
+  var currentReadingId = null;
+  var currentReadingTabIndex = 0;
+
   function showReading(id, tabIndex) {
     var d = DEITIES[id];
     if (!d) { showHome(); return; }
-    var content = contentList(d)[tabIndex];
+    var list = contentList(d);
+    var content = list[tabIndex];
     if (!content) { showDeityDetail(id); return; }
+
+    currentReadingId = id;
+    currentReadingTabIndex = tabIndex;
 
     setThemeColor(d);
     var label = content.label || d.telugu;
@@ -228,11 +235,22 @@
     readingSubtitle.textContent = d.telugu;
     renderReadingContent(d, content);
 
+    prevTabBtn.disabled = tabIndex <= 0;
+    nextTabBtn.disabled = tabIndex >= list.length - 1;
+
     viewHome.hidden = true;
     viewDeity.hidden = true;
     viewReading.hidden = false;
     bottomNav.hidden = true;
     window.scrollTo(0, 0);
+  }
+
+  function goToAdjacentTab(delta) {
+    if (!currentReadingId) return;
+    var list = contentList(DEITIES[currentReadingId]);
+    var newIndex = currentReadingTabIndex + delta;
+    if (newIndex < 0 || newIndex >= list.length) return;
+    openReading(currentReadingId, newIndex);
   }
 
   // ---------------- HOME ----------------
@@ -335,30 +353,10 @@
     }
   });
 
-  // ---------------- reading font size (persisted) ----------------
+  // ---------------- reading screen: move to prev/next item in the list ----------------
 
-  var FONT_SCALE_KEY = "readingFontScale";
-  var FONT_MIN = 0.85;
-  var FONT_MAX = 1.5;
-  var FONT_STEP = 0.1;
-
-  function getFontScale() {
-    var v;
-    try { v = parseFloat(localStorage.getItem(FONT_SCALE_KEY)); } catch (e) { v = NaN; }
-    if (isNaN(v)) return 1;
-    return Math.min(FONT_MAX, Math.max(FONT_MIN, v));
-  }
-
-  function setFontScale(v) {
-    v = Math.round(Math.min(FONT_MAX, Math.max(FONT_MIN, v)) * 100) / 100;
-    document.documentElement.style.setProperty("--reading-font-scale", v);
-    try { localStorage.setItem(FONT_SCALE_KEY, v); } catch (e) { /* private mode etc. */ }
-  }
-
-  fontDecBtn.addEventListener("click", function () { setFontScale(getFontScale() - FONT_STEP); });
-  fontIncBtn.addEventListener("click", function () { setFontScale(getFontScale() + FONT_STEP); });
-
-  setFontScale(getFontScale());
+  prevTabBtn.addEventListener("click", function () { goToAdjacentTab(-1); });
+  nextTabBtn.addEventListener("click", function () { goToAdjacentTab(1); });
 
   // ---------------- round header clock (shown on every screen) ----------------
 

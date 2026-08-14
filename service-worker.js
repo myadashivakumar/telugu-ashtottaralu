@@ -1,4 +1,4 @@
-const CACHE_NAME = "ashtottara-pwa-new-app-v12";
+const CACHE_NAME = "ashtottara-pwa-new-app-v13";
 const APP_SHELL = [
   "./",
   "./index.html",

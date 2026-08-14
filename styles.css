@@ -667,6 +667,7 @@ button {
   font-size: 14px;
 }
 .font-btn:active { background: var(--maroon-soft); }
+.font-btn:disabled { opacity: .35; }
 
 .audio-btn {
   width: 52px;
