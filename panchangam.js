@@ -75,11 +75,15 @@
       return;
     }
     var settled = false;
+    // Safety net only, for browsers that never call either geolocation
+    // callback — kept well above the 8s option below so a real in-flight
+    // fix (which routinely takes a few seconds longer than 4s on a cold
+    // network-based lookup) always gets the chance to win first.
     var fallbackTimer = setTimeout(function () {
       if (settled) return;
       settled = true;
       render(DEFAULT_LAT, DEFAULT_LON, "హైదరాబాద్ కోసం చూపబడింది");
-    }, 4000);
+    }, 12000);
 
     navigator.geolocation.getCurrentPosition(
       function (pos) {
@@ -94,7 +98,7 @@
         clearTimeout(fallbackTimer);
         render(DEFAULT_LAT, DEFAULT_LON, "లొకేషన్ అనుమతి లేదు కాబట్టి హైదరాబాద్ కోసం చూపబడింది");
       },
-      { timeout: 4000, maximumAge: 600000 }
+      { timeout: 8000, maximumAge: 600000 }
     );
   }
 
