@@ -34,5 +34,6 @@ window.DEITY_DATA.varalakshmi = {
   "color": "#B8860B",
   "colorSoft": "#F5E9CE",
   "symbol": "kalasha",
+  "image": "images/deities/varalakshmi.jpg",
   "id": "varalakshmi"
 };

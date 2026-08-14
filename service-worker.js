@@ -1,4 +1,4 @@
-const CACHE_NAME = "ashtottara-pwa-new-app-v4";
+const CACHE_NAME = "ashtottara-pwa-new-app-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./data.js",
   "./data/ganesha.js",
   "./data/vishnu.js",
+  "./data/venkateswara.js",
   "./data/shiva.js",
   "./data/kedareshwara-vratham.js",
   "./data/lakshmi.js",
@@ -31,8 +32,11 @@ const APP_SHELL = [
   "./icon-180.png",
   "./images/deities/ganesha.jpg",
   "./images/deities/vishnu.jpg",
+  "./images/deities/venkateswara.jpg",
   "./images/deities/shiva.jpg",
+  "./images/deities/kedareshwara.jpg",
   "./images/deities/lakshmi.jpg",
+  "./images/deities/varalakshmi.jpg",
   "./images/deities/durga.jpg",
   "./images/deities/saraswati.jpg",
   "./images/deities/hanuman.jpg",
