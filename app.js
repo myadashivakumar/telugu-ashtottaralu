@@ -25,7 +25,7 @@
   var navReading = document.getElementById("nav-reading");
   var navPanchangam = document.getElementById("nav-panchangam");
   var navAudio = document.getElementById("nav-audio");
-  var navMore = document.getElementById("nav-more");
+  var navShare = document.getElementById("nav-share");
 
   var moreMenu = document.getElementById("more-menu");
   var moreMenuBackdrop = document.getElementById("more-menu-backdrop");
@@ -288,11 +288,25 @@
 
   navHome.addEventListener("click", goHome);
 
-  // "పఠనం" / "ఆడియో" don't have a dedicated section yet — the nav item exists
-  // per the design spec but intentionally does nothing until that section
-  // is built, rather than faking functionality.
-  navReading.addEventListener("click", function () {});
-  navAudio.addEventListener("click", function () {});
+  var toastTimer = null;
+  function showToast(message) {
+    var el = document.getElementById("toast");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "toast";
+      el.className = "toast";
+      document.body.appendChild(el);
+    }
+    el.textContent = message;
+    el.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove("is-visible"); }, 2000);
+  }
+
+  // "పఠనం" / "ఆడియో" don't have a dedicated section yet — show a coming-soon
+  // notice rather than faking functionality.
+  navReading.addEventListener("click", function () { showToast("త్వరలో అందుబాటులోకి వస్తుంది"); });
+  navAudio.addEventListener("click", function () { showToast("త్వరలో అందుబాటులోకి వస్తుంది"); });
 
   navPanchangam.addEventListener("click", function () {
     goHome();
@@ -305,11 +319,23 @@
   function openMoreMenu() { moreMenu.hidden = false; }
   function closeMoreMenu() { moreMenu.hidden = true; }
 
-  navMore.addEventListener("click", openMoreMenu);
   btnMenu.addEventListener("click", openMoreMenu);
   moreMenuBackdrop.addEventListener("click", closeMoreMenu);
   document.querySelectorAll(".more-menu__item").forEach(function (b) {
     b.addEventListener("click", closeMoreMenu);
+  });
+
+  navShare.addEventListener("click", function () {
+    var shareData = { title: document.title, text: document.title, url: location.href };
+    if (navigator.share) {
+      navigator.share(shareData).catch(function () {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareData.url).then(function () {
+        showToast("లింక్ కాపీ చేయబడింది");
+      }).catch(function () {});
+    }
   });
 
   // ---------------- reading font size (persisted) ----------------

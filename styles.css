@@ -697,6 +697,28 @@ button {
 }
 .bottom-nav[hidden] { display: none; }
 
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px);
+  transform: translate(-50%, 8px);
+  z-index: 30;
+  background: var(--maroon-deep);
+  color: var(--surface);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .bottom-nav__item {
   flex: 1;
   display: flex;
